@@ -6,18 +6,37 @@ public class Employee {
 	private int user_Id;
 	private String first_Name;
 	private String last_Name;
-	int hours;
+	private String userName;
+	private String password;
 
 	public Employee() {
 		super();
 	}
 
-	public Employee(int user_Id, String first_Name, String last_Name, int hours) {
+	public Employee(int user_Id, String first_Name, String last_Name, String userName, String password) {
 		super();
 		this.user_Id = user_Id;
 		this.first_Name = first_Name;
 		this.last_Name = last_Name;
-		this.hours = hours;
+		this.userName=userName;
+		this.password=password;
+		
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public int getUser_Id() {
@@ -44,13 +63,6 @@ public class Employee {
 		this.last_Name = last_Name;
 	}
 
-	public int getHours() {
-		return hours;
-	}
-
-	public void setHours(int hours) {
-		this.hours = hours;
-	}
 
 	@Override
 	public int hashCode() {
@@ -88,8 +100,10 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [user_Id=" + user_Id + ", first_Name=" + first_Name + ", last_Name=" + last_Name + ", hours="
-				+ hours + "]";
+		return "Employee [user_Id=" + user_Id + ", first_Name=" + first_Name + ", last_Name=" + last_Name + "]";
 	}
+
+	
+	
 
 }
