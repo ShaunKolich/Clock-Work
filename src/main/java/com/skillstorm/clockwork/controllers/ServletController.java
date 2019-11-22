@@ -1,66 +1,43 @@
 package com.skillstorm.clockwork.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.skillstorm.clockwork.beans.Employee;
+import com.skillstorm.clockwork.data.UserDao;
 
 public class ServletController extends HttpServlet {
 
-	private EmployeeController employeeController = new EmployeeController();
-
-	protected void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String uri = req.getRequestURI();
-
-		switch (uri) {
-		case "/clockwork/api/employee":
-			if (req.getMethod().equals("POST")) {
-
-				return;
-			}
-			if (req.getMethod().equals("PUT")) {
-
-				return;
-			}
-			if (req.getMethod().equals("GET")) {
-
-				return;
-			}
-			if (req.getMethod().equals("DELETE")) {
-				;
-				return;
-			}
-
-		default:
-			break;
-		}
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doDispatch(req, resp);
-	}
-
-	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doDispatch(req, resp);
-	}
-
-	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doDispatch(req, resp);
-	}
-
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doDispatch(req, resp);
-	}
-
-	@Override
-	public void init() throws ServletException {
-		System.out.println("Servlet Working!");
-	}
+		
+		UserDao userDao = new UserDao();
+		String userName = req.getParameter("userName");
+		String password = req.getParameter("password");
+		
+		
+		try {
+			Employee Username = userDao.getUserName(userName,password);
+		
+			if(Username !=null) {
+				HttpSession session = req.getSession();
+				session.setAttribute("User", Username);
+				resp.sendRedirect("src\\main\\webapp\\WEB-INF\\timesheet.html");
+				
+			}else {
+				String message = "Invalid Username or Password";
+				req.setAttribute("message", message);
+			}
+			
+		}
+		catch (SQLException | ClassNotFoundException e){
+			throw new ServletException();
+		}
+		
+		
 }
