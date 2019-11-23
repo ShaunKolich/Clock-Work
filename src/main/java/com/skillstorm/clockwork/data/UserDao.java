@@ -5,8 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.management.RuntimeErrorException;
+
+import org.chinook.beans.Artist;
 
 import com.skillstorm.clockwork.beans.Employee;
 
@@ -54,8 +58,9 @@ public class UserDao {
 		}
 	}
 
-	public Employee getEmployeeName(String UserName) {
+	public Set<Employee> getEmployeeName(String UserName) {
 
+		Set<Employee> results = new HashSet<>();
 		Connection conn = getConnection();
 		Employee employeeName = null;
 		try {
@@ -63,10 +68,12 @@ public class UserDao {
 			PreparedStatement stmt = conn
 					.prepareStatement("select First_Name, Last_Name, User_Id from employee where UserName = ?");
 			stmt.setString(6, UserName);
-			ResultSet results = stmt.executeQuery();
-			results.next();
-			employeeName = new Employee(results.getString(2), results.getNString(3), results.getInt(1));
-
+			ResultSet result = stmt.executeQuery();
+			result.next();
+			while (result.next()) {
+				employeeName = new Employee(result.getString(2), result.getNString(3), result.getInt(1));
+				results.add(employeeName);
+			}
 			conn.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -78,6 +85,6 @@ public class UserDao {
 				throw new RuntimeException(e);
 			}
 		}
-		return employeeName;
+		return results;
 	}
 }
