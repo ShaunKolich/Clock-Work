@@ -79,4 +79,63 @@ public class TimeSheetDao {
 
 	}
 
+	public void delete(int User_Id) {
+		Connection conn = getConnection();
+		String sql = "delete hours from hours inner join employee on employee.User_Id = hours.User_Id = ? where UserName like ?";
+
+		try {
+			conn.setAutoCommit(false);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, User_Id);
+			stmt.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				throw new RuntimeException(e1);
+			}
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+	}
+
+	public TimeSheet save(TimeSheet timesheet) {
+		Connection conn = getConnection();
+		try {
+			PreparedStatement stmt = conn.prepareStatement(
+					"insert into hours (User_Id, End_Date, Mon_Hours, Tues_Hours, Weds_Hours, Thurs_Hours, Fri_Hours,Total_Hours) values (?)",
+					new String[] { "User_Id" });
+			stmt.setInt(1, timesheet.getUser_Id());
+			stmt.setInt(2, timesheet.getEnd_Date());
+			stmt.setDouble(3, timesheet.getMon_Hours());
+			stmt.setDouble(4, timesheet.getTues_Hours());
+			stmt.setDouble(5, timesheet.getWeds_Hours());
+			stmt.setDouble(5, timesheet.getThurs_Hours());
+			stmt.setDouble(6, timesheet.getFri_Hours());
+			stmt.setDouble(6, timesheet.getTotal_Hours());
+
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				throw new RuntimeException(e1);
+			}
+			throw new RuntimeException(e);
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return timesheet;
+	}
+
 }
