@@ -9,7 +9,7 @@ public class Employee {
 	private String userName;
 	private String password;
 	private String role_Id;
-	private int User_Id;
+	
 
 	public Employee() {
 		super();
@@ -33,10 +33,6 @@ public class Employee {
 
 	public String getUser_Id() {
 		return user_Id;
-	}
-
-	public void setUser_Id(int user_Id) {
-		User_Id = user_Id;
 	}
 
 	public void setUser_Id(String user_Id) {
@@ -87,6 +83,7 @@ public class Employee {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		int User_Id;
 		result = prime * result + ((first_Name == null) ? 0 : first_Name.hashCode());
 		result = prime * result + ((last_Name == null) ? 0 : last_Name.hashCode());
 		User_Id = Integer.parseInt(user_Id);
