@@ -14,7 +14,7 @@ public class Employee {
 	public Employee() {
 		super();
 	}
-	
+
 	public Employee(String userName, String password, String user_Id) {
 		super();
 		this.userName = userName;
@@ -28,48 +28,59 @@ public class Employee {
 		this.first_Name = first_Name;
 		this.last_Name = last_Name;
 		this.role_Id = role_Id;
-	
 
 	}
 
-	public String getPassword(String password) {
-		return password;
-	}
-
-	public String setPassword(String password) {
-		return password;
-	}
-
-	public String getUserName(String userName) {
-		return userName;
-	}
-
-	public String setUserName(String userName) {
-		return userName;
-	}
-
-	public String getUser_Id(String user_Id) {
+	public String getUser_Id() {
 		return user_Id;
 	}
 
-	public String setUser_Id(String user_Id) {
-		return user_Id;
+	public void setUser_Id(int user_Id) {
+		User_Id = user_Id;
 	}
 
-	public String getFirst_Name(String first_Name) {
+	public void setUser_Id(String user_Id) {
+		this.user_Id = user_Id;
+	}
+
+	public String getFirst_Name() {
 		return first_Name;
 	}
 
-	public String setFirst_Name(String first_Name) {
-		return first_Name;
+	public void setFirst_Name(String first_Name) {
+		this.first_Name = first_Name;
 	}
 
-	public String getLast_Name(String last_Name) {
+	public String getLast_Name() {
 		return last_Name;
 	}
 
-	public String setLast_Name(String last_Name) {
-		return last_Name;
+	public void setLast_Name(String last_Name) {
+		this.last_Name = last_Name;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole_Id() {
+		return role_Id;
+	}
+
+	public void setRole_Id(String role_Id) {
+		this.role_Id = role_Id;
 	}
 
 	@Override

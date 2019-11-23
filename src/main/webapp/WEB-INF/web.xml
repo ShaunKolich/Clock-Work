@@ -7,25 +7,25 @@
 	<display-name>clockwork</display-name>
 	
 	<servlet>
-		<servlet-name>servlet</servlet-name>
+		<servlet-name>login-servlet</servlet-name>
 		<servlet-class>com.skillstorm.clockwork.controllers.LoginServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>servlet</servlet-name>
-		<url-pattern>/api/*</url-pattern>
+		<servlet-name>login-servlet</servlet-name>
+		<url-pattern>/api/login*</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>servlet</servlet-name>
+		<servlet-name>logout-servlet</servlet-name>
 		<servlet-class>com.skillstorm.clockwork.controllers.LogoutServlet</servlet-class>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>servlet</servlet-name>
-		<url-pattern>/api/*</url-pattern>
+		<servlet-name>logout-servlet</servlet-name>
+		<url-pattern>/api/logout*</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

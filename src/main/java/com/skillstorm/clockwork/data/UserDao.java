@@ -17,7 +17,7 @@ public class UserDao {
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/clockwork\", \"root\", \"root");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/clockwork", "root", "root");
 			return conn;
 		} catch (SQLException | ClassNotFoundException e) {
 			throw new RuntimeException(e);
