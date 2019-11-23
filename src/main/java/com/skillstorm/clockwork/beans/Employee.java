@@ -18,51 +18,50 @@ public class Employee {
 		this.user_Id = user_Id;
 		this.first_Name = first_Name;
 		this.last_Name = last_Name;
-		this.userName=userName;
-		this.password=password;
-		
+		this.userName = userName;
+		this.password = password;
+
 	}
 
-	public String getPassword() {
+	public String getPassword(String password) {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public String setPassword(String password) {
+		return password;
 	}
 
-	public String getUserName() {
+	public String getUserName(String userName) {
 		return userName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public String setUserName(String userName) {
+		return userName;
 	}
 
-	public int getUser_Id() {
+	public int getUser_Id(int user_Id) {
 		return user_Id;
 	}
 
-	public void setUser_Id(int user_Id) {
-		this.user_Id = user_Id;
+	public int setUser_Id(int user_Id) {
+		return user_Id;
 	}
 
-	public String getFirst_Name() {
+	public String getFirst_Name(String first_Name) {
 		return first_Name;
 	}
 
-	public void setFirst_Name(String first_Name) {
-		this.first_Name = first_Name;
+	public String setFirst_Name(String first_Name) {
+		return first_Name;
 	}
 
-	public String getLast_Name() {
+	public String getLast_Name(String last_Name) {
 		return last_Name;
 	}
 
-	public void setLast_Name(String last_Name) {
-		this.last_Name = last_Name;
+	public String setLast_Name(String last_Name) {
+		return last_Name;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -102,8 +101,5 @@ public class Employee {
 	public String toString() {
 		return "Employee [user_Id=" + user_Id + ", first_Name=" + first_Name + ", last_Name=" + last_Name + "]";
 	}
-
-	
-	
 
 }
