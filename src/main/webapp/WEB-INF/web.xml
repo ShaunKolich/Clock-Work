@@ -8,8 +8,19 @@
 	
 	<servlet>
 		<servlet-name>servlet</servlet-name>
-		<servlet-class>com.skillstorm.clockwork.controllers.ServletController</servlet-class>
+		<servlet-class>com.skillstorm.clockwork.controllers.LoginServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>servlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>servlet</servlet-name>
+		<servlet-class>com.skillstorm.clockwork.controllers.LogoutServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
 	</servlet>
 	
 	<servlet-mapping>

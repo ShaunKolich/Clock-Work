@@ -12,14 +12,19 @@ public class Employee {
 	public Employee() {
 		super();
 	}
+	
+	public Employee(String userName, String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
+	}
 
-	public Employee(int user_Id, String first_Name, String last_Name, String userName, String password) {
+	public Employee(String first_Name, String last_Name, int user_id) {
 		super();
 		this.user_Id = user_Id;
 		this.first_Name = first_Name;
 		this.last_Name = last_Name;
-		this.userName = userName;
-		this.password = password;
+	
 
 	}
 

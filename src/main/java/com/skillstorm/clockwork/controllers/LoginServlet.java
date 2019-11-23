@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
 			if (Username != null) {
 				HttpSession session = req.getSession();
-				session.setAttribute("User", Username);
+				session.setAttribute("Username", userName);
 
 			} else {
 				String message = "Invalid Username or Password";
