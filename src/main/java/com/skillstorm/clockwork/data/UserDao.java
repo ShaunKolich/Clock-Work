@@ -38,13 +38,46 @@ public class UserDao {
 				UserName = new Employee();
 				UserName.setUserName(userName);
 				UserName.setPassword(password);
-				}
+			}
 			conn.close();
 			return UserName;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 
+	public Employee getEmployeeName(String UserName) {
+
+		Connection conn = getConnection();
+		Employee employeeName = null;
+		try {
+
+			PreparedStatement stmt = conn
+					.prepareStatement("select First_Name, Last_Name, User_Id from employee where UserName = ?");
+			stmt.setString(6, UserName);
+			ResultSet results = stmt.executeQuery();
+			results.next();
+			employeeName = new Employee(results.getString(2), results.getNString(3), results.getInt(1));
+
+			conn.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return employeeName;
+	}
 }

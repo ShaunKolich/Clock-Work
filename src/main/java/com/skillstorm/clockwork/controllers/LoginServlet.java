@@ -41,20 +41,4 @@ public class LoginServlet extends HttpServlet {
 			throw new ServletException(ex);
 		}
 	}
-
-//	public class LogoutUser {
-//
-//		private void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		
-//			HttpSession session = req.getSession(false);
-//			if (session != null) {
-//				session.removeAttribute("userName");
-//
-//				RequestDispatcher dispatcher = req.getRequestDispatcher("");
-//				dispatcher.forward(req, resp);
-//			}else {
-//				
-//			}
-//		}
-//	}
 }
