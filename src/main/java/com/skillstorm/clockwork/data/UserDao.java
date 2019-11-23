@@ -10,8 +10,6 @@ import java.util.Set;
 
 import javax.management.RuntimeErrorException;
 
-import org.chinook.beans.Artist;
-
 import com.skillstorm.clockwork.beans.Employee;
 
 public class UserDao {
