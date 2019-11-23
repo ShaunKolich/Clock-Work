@@ -3,27 +3,31 @@ package com.skillstorm.clockwork.beans;
 //My employee model
 
 public class Employee {
-	private int user_Id;
+	private String user_Id;
 	private String first_Name;
 	private String last_Name;
 	private String userName;
 	private String password;
+	private String role_Id;
+	private int User_Id;
 
 	public Employee() {
 		super();
 	}
 	
-	public Employee(String userName, String password) {
+	public Employee(String userName, String password, String user_Id) {
 		super();
 		this.userName = userName;
 		this.password = password;
+		this.user_Id = user_Id;
 	}
 
-	public Employee(String first_Name, String last_Name, int user_id) {
+	public Employee(String first_Name, String last_Name, String user_id, String role_Id) {
 		super();
 		this.user_Id = user_Id;
 		this.first_Name = first_Name;
 		this.last_Name = last_Name;
+		this.role_Id = role_Id;
 	
 
 	}
@@ -44,11 +48,11 @@ public class Employee {
 		return userName;
 	}
 
-	public int getUser_Id(int user_Id) {
+	public String getUser_Id(String user_Id) {
 		return user_Id;
 	}
 
-	public int setUser_Id(int user_Id) {
+	public String setUser_Id(String user_Id) {
 		return user_Id;
 	}
 
@@ -74,7 +78,8 @@ public class Employee {
 		int result = 1;
 		result = prime * result + ((first_Name == null) ? 0 : first_Name.hashCode());
 		result = prime * result + ((last_Name == null) ? 0 : last_Name.hashCode());
-		result = prime * result + user_Id;
+		User_Id = Integer.parseInt(user_Id);
+		result = prime * result + User_Id;
 		return result;
 	}
 

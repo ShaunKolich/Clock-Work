@@ -18,8 +18,11 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		UserDao userDao = new UserDao();
+		
 		String userName = req.getParameter("userName");
 		String password = req.getParameter("password");
+		int User_Id = Integer.parseInt(req.getParameter("user_Id"));
+		
 
 		try {
 			Employee Username = userDao.getUserName(userName, password);

@@ -29,10 +29,12 @@ public class UserDao {
 
 		Connection conn = getConnection();
 		Employee UserName = null;
+		
 		try {
 			PreparedStatement stmt = conn.prepareStatement("Select * from Employee where userName = ? && password = ?");
 			stmt.setString(6, userName);
 			stmt.setString(4, password);
+//			stmt.setInt(1, user_Id);
 
 			ResultSet results = stmt.executeQuery();
 			results.next();
@@ -40,6 +42,7 @@ public class UserDao {
 				UserName = new Employee();
 				UserName.setUserName(userName);
 				UserName.setPassword(password);
+//				UserName.setUser_Id(user_Id);
 			}
 			conn.close();
 			return UserName;
@@ -64,12 +67,12 @@ public class UserDao {
 		try {
 
 			PreparedStatement stmt = conn
-					.prepareStatement("select First_Name, Last_Name, User_Id from employee where UserName = ?");
-			stmt.setString(6, UserName);
+					.prepareStatement("select First_Name, Last_Name, User_Id from employee where UserName LIKE ?");
+			stmt.setString(6, UserName + "%");
 			ResultSet result = stmt.executeQuery();
 			result.next();
 			while (result.next()) {
-				employeeName = new Employee(result.getString(2), result.getNString(3), result.getInt(1));
+				employeeName = new Employee(result.getString(2), result.getString(3), result.getString(1));
 				results.add(employeeName);
 			}
 			conn.close();
