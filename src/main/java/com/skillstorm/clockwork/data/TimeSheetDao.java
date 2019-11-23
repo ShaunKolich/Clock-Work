@@ -31,7 +31,7 @@ public class TimeSheetDao {
 		try {
 			PreparedStatement stmt = conn.prepareStatement(
 					"select * from Hours inner join employee on employee.User_Id = hours.User_Id where employee.UserName like ?");
-			stmt.setString(14, UserName + "%");
+			stmt.setString(1, UserName + "%");
 			ResultSet result = stmt.executeQuery();
 
 			while (result.next()) {
