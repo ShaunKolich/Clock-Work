@@ -112,7 +112,6 @@ public class TimeSheetDao {
 			PreparedStatement stmt = conn.prepareStatement(
 					"insert into hours (User_Id, End_Date, Mon_Hours, Tues_Hours, Weds_Hours, Thurs_Hours, Fri_Hours,Total_Hours) values (?)",
 					new String[] { "User_Id" });
-			stmt.setInt(1, timesheet.getUser_Id());
 			stmt.setInt(2, timesheet.getEnd_Date());
 			stmt.setDouble(3, timesheet.getMon_Hours());
 			stmt.setDouble(4, timesheet.getTues_Hours());
@@ -120,6 +119,12 @@ public class TimeSheetDao {
 			stmt.setDouble(5, timesheet.getThurs_Hours());
 			stmt.setDouble(6, timesheet.getFri_Hours());
 			stmt.setDouble(6, timesheet.getTotal_Hours());
+			ResultSet keys = stmt.getGeneratedKeys();
+			while (keys.next()) {
+				int User_Id = keys.getInt(1);
+				timesheet.setUser_Id(User_Id);
+
+			}
 
 		} catch (SQLException e) {
 			try {
