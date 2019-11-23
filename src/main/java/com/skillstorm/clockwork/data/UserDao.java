@@ -31,9 +31,9 @@ public class UserDao {
 		Employee UserName = null;
 		
 		try {
-			PreparedStatement stmt = conn.prepareStatement("Select * from Employee where userName = ? && password = ?");
-			stmt.setString(6, userName);
-			stmt.setString(4, password);
+			PreparedStatement stmt = conn.prepareStatement("Select * from Employee where userName = ? and password = ?");
+			stmt.setString(1, userName);
+			stmt.setString(2, password);
 //			stmt.setInt(1, user_Id);
 
 			ResultSet results = stmt.executeQuery();

@@ -52,5 +52,20 @@ return results;
 }
 
 
+//public TimeSheet update(String UserName) {
+//	Connection conn = getConnection();
+//	String sql = "update hours h inner join employee e on e.User_Id = h.User_Id Set Mon_Hours = ?, Tues_Hours = ?, Wed_Hours = ?, Thurs_Hours = ?, Fri_Hours = ? where e.UserName like ?";
+//	try {
+//		conn.setAutoCommit(false);
+//		PreparedStatement stmt = conn.prepareStatement(sql);
+////		stmt.setDouble(3,TimeSheet.setMon_Hours());
+////		stmt.setDouble(4, TimeSheet.setTues_Mon());
+//		stmt.executeUpdate();
+//		conn.commit();
+//		
+//	}
 
 }
+
+
+

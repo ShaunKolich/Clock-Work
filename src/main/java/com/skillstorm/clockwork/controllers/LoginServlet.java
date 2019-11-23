@@ -15,28 +15,30 @@ import com.skillstorm.clockwork.data.UserDao;
 
 public class LoginServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		UserDao userDao = new UserDao();
 		
 		String userName = req.getParameter("userName");
 		String password = req.getParameter("password");
-		int User_Id = Integer.parseInt(req.getParameter("user_Id"));
+//		int User_Id = Integer.parseInt(req.getParameter("user_Id"));
 		
-
+		
 		try {
+			
 			Employee Username = userDao.getUserName(userName, password);
-
+			
 			if (Username != null) {
 				HttpSession session = req.getSession();
-				session.setAttribute("Username", userName);
+				session.setAttribute("Username", Username);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/timesheet.html");
+				dispatcher.forward(req, resp);
 
 			} else {
 				String message = "Invalid Username or Password";
 				req.setAttribute("message", message);
 			}
-			RequestDispatcher dispatcher = req.getRequestDispatcher("src\\main\\webapp\\WEB-INF\\timesheet.html");
-			dispatcher.forward(req, resp);
+			
 
 		}
 

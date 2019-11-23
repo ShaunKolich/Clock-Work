@@ -12,5 +12,9 @@ public class EmployeeService {
 	public Set<Employee> getEmployeeName(String UserName) {
 		return userDao.getEmployeeName(UserName);
 	}
+//Ask about this
+	public Employee getUserName(String userName, String password) throws Exception {
+		return userDao.getUserName(userName, password);
+	}
 
 }
