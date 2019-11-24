@@ -13,17 +13,16 @@ import javax.management.RuntimeErrorException;
 import com.skillstorm.clockwork.beans.Employee;
 
 public class UserDao {
-	
-public static void main(String[] args) throws ClassNotFoundException {
-	
-	UserDao user = new UserDao();
-	
-	user.getUserName("skolich", "test");
-	System.out.println(user.getUserName("skolich", "test"));
-	
-	
-	
-}
+
+	public static void main(String[] args) throws ClassNotFoundException {
+
+		UserDao user = new UserDao();
+
+		user.getUserName("skolich", "test");
+		System.out.println(user.getUserName("skolich", "test"));
+
+	}
+
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,27 +37,24 @@ public static void main(String[] args) throws ClassNotFoundException {
 	public Employee getUserName(String userName, String password) throws ClassNotFoundException {
 
 		Connection conn = getConnection();
-//		Employee UserName = null;
-		
+		Employee employee = null;
 		try {
-			PreparedStatement stmt = conn.prepareStatement("Select * from Employee where userName = ? and password = ?;");
+			PreparedStatement stmt = conn
+					.prepareStatement("Select * from Employee where userName = ? and password = ?;");
 			stmt.setString(1, userName);
 			stmt.setString(2, password);
-//			stmt.setInt(1, user_Id);
 
 			ResultSet results = stmt.executeQuery();
 			results.next();
-			
-			
-//			if (results.next()) {
-				System.out.println("Result Found");
-				Employee userName1 = new Employee();
-				userName1.setUserName(results.getString("UserName"));
-				userName1.setPassword(results.getString("password"));
-//				UserName.setUser_Id(user_Id);
-				System.out.println(results.getString("UserName"));
-				System.out.println(results.getString("password"));
-//			}
+
+			System.out.println("Result Found");
+			Employee userName1 = new Employee();
+			userName1.setUserName(results.getString("UserName"));
+			userName1.setPassword(results.getString("password"));
+
+			employee = new Employee (results.getString("UserName"),(results.getString("password")));
+			System.out.println(results.getString("UserName"));
+			System.out.println(results.getString("password"));
 			conn.close();
 			return userName1;
 

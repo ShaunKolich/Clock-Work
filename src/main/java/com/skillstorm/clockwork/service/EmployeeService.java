@@ -9,12 +9,12 @@ public class EmployeeService {
 
 	private UserDao userDao = new UserDao();
 
-	public Set<Employee> getEmployeeName(String UserName) {
-		return userDao.getEmployeeName(UserName);
-	}
-//Ask about this
 	public Employee getUserName(String userName, String password) throws Exception {
 		return userDao.getUserName(userName, password);
 	}
-
+	public Set<Employee> getEmployeeName(String UserName) {
+	return userDao.getEmployeeName(UserName);
+	}
+	
+	
 }
