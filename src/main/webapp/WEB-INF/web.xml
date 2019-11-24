@@ -12,7 +12,7 @@
 	
 	<servlet>
 		<servlet-name>clockwork</servlet-name>
-		<servlet-class>com.skillstorm.clockwork.controllers.LoginServlet</servlet-class>
+		<servlet-class>com.skillstorm.clockwork.controllers.FrontController</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skillstorm.clockwork.beans.TimeSheet;
 import com.skillstorm.clockwork.data.TimeSheetDao;
-import com.skillstorm.clockwork.service.TimesheetService;
+import com.skillstorm.clockwork.data.TimesheetService;
 
 public class TimeSheetController {
 
