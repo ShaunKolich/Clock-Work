@@ -13,14 +13,15 @@ import javax.management.RuntimeErrorException;
 import com.skillstorm.clockwork.beans.Employee;
 
 public class UserDao {
-
+	
+//Main testing
 	public static void main(String[] args) throws ClassNotFoundException {
 
 		UserDao user = new UserDao();
 
-		user.getUserName("skolich", "test");
-		System.out.println(user.getUserName("skolich", "test"));
-
+//		user.getUserName("skolich", "test");
+//		System.out.println(user.getUserName("skolich", "test"));
+		user.getEmployeeName("skolich");
 	}
 
 	public Connection getConnection() {
@@ -43,18 +44,13 @@ public class UserDao {
 					.prepareStatement("Select * from Employee where userName = ? and password = ?;");
 			stmt.setString(1, userName);
 			stmt.setString(2, password);
-
 			ResultSet results = stmt.executeQuery();
 			results.next();
-
-			System.out.println("Result Found");
+//			System.out.println("Result Found");
 			Employee userName1 = new Employee();
-			userName1.setUserName(results.getString("UserName"));
-			userName1.setPassword(results.getString("password"));
-
 			employee = new Employee (results.getString("UserName"),(results.getString("password")));
-			System.out.println(results.getString("UserName"));
-			System.out.println(results.getString("password"));
+//			System.out.println(results.getString("UserName"));
+//			System.out.println(results.getString("password"));
 			conn.close();
 			return userName1;
 
@@ -78,13 +74,17 @@ public class UserDao {
 		try {
 
 			PreparedStatement stmt = conn
-					.prepareStatement("select First_Name, Last_Name, User_Id from employee where UserName LIKE ?;");
+					.prepareStatement("select * from employee where UserName LIKE ?;");
 			stmt.setString(6, UserName + "%");
 			ResultSet result = stmt.executeQuery();
 			result.next();
+			
 			while (result.next()) {
-				employeeName = new Employee(result.getString(2), result.getString(3), result.getString(1));
+				employeeName = new Employee(result.getString("First_Name"),result.getString("Last_Name"));
 				results.add(employeeName);
+				System.out.println(result.getString(1));
+//				System.out.println(result.getString(2));
+//				System.out.println(result.getString(3));
 			}
 			conn.close();
 		} catch (SQLException e) {

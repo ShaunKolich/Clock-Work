@@ -16,13 +16,14 @@ public class EmployeeController {
 
 	EmployeeService employeeService = new EmployeeService();
 
-	public void postTimeSheet(HttpServletRequest req, HttpServletResponse resp) throws Throwable {
-		
+	public void getUserName(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		resp.setContentType("application/json");
+		if (req.getParameter("userName") != null && (req.getParameter("password") !=null)) {
+			resp.getWriter().println(new ObjectMapper().writeValueAsString(
+					employeeService.getUserName(req.getParameter("userName"), req.getParameter("password"))));
+		}else {
+			System.out.println("no user info");
+		}
 	}
-
-
-
-
-
-
 }
+

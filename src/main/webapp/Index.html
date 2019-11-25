@@ -1,21 +1,43 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Clockwork Login</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="">
 </head>
 
+<script src="login.js" async defer></script>
+
+<header>
+	<meta charset="ISO-8859-1">
+	<title>Clockwork Login</title>
+</header>
+
 <body>
-	<form method="GET" action="/clockwork/api/">
+	<form method="GET" action="">
 		<div class="login_box">
-			<label>Username</label> <input type="text" name="userName"
-				placeholder="User Name" /> <label>Password</label> <input
-				type="text" name="password" placeholder="Password" />
-			<Button type="submit">Submit</Button>
+			<label>Username</label> <input type="text" name="userName" id= "user" placeholder="User Name" />
+			<label>Password</label> <input type="text" name="password" placeholder="Password" id="password" />
+			<Button type="submit" onclick="Submit()">Submit</Button>
 		</div>
 	</form>
-
+	<script>
+		
+	</script>
 </body>
+
+
+</html>
+
+
 
 </html>
