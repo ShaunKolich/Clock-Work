@@ -9,14 +9,18 @@ public class EmployeeService {
 
 	private UserDao userDao = new UserDao();
 
-	public Employee getUserName(String userName, String password) throws Exception {
-		
-		
-		return userDao.getUserName(userName, password);
+	public Employee getUserName(String user, String pass) throws Exception {
+		Employee employee = new Employee();
+
+		if (userDao.verifyEmployee(user, pass)) {
+			employee = userDao.getUserName(user, pass);
+		}
+		return employee;
+
 	}
+
 	public Set<Employee> getEmployeeName(String UserName) {
-	return userDao.getEmployeeName(UserName);
+		return userDao.getEmployeeName(UserName);
 	}
-	
-	
+
 }
