@@ -13,7 +13,7 @@ import javax.management.RuntimeErrorException;
 import com.skillstorm.clockwork.beans.Employee;
 
 public class UserDao {
-	
+
 //Main testing
 	public static void main(String[] args) throws ClassNotFoundException {
 
@@ -38,6 +38,8 @@ public class UserDao {
 	public Employee getUserName(String userName, String password) throws ClassNotFoundException {
 
 		Connection conn = getConnection();
+		userName.toLowerCase();
+
 		Employee employee = null;
 		try {
 			PreparedStatement stmt = conn
@@ -47,12 +49,10 @@ public class UserDao {
 			ResultSet results = stmt.executeQuery();
 			results.next();
 //			System.out.println("Result Found");
-			Employee userName1 = new Employee();
-			employee = new Employee (results.getString("UserName"),(results.getString("password")));
 //			System.out.println(results.getString("UserName"));
 //			System.out.println(results.getString("password"));
 			conn.close();
-			return userName1;
+			return new Employee(results);
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -73,14 +73,13 @@ public class UserDao {
 		Employee employeeName = null;
 		try {
 
-			PreparedStatement stmt = conn
-					.prepareStatement("select * from employee where UserName LIKE ?;");
+			PreparedStatement stmt = conn.prepareStatement("select * from employee where UserName LIKE ?;");
 			stmt.setString(6, UserName + "%");
 			ResultSet result = stmt.executeQuery();
 			result.next();
-			
+
 			while (result.next()) {
-				employeeName = new Employee(result.getString("First_Name"),result.getString("Last_Name"));
+				employeeName = new Employee(result.getString("First_Name"), result.getString("Last_Name"));
 				results.add(employeeName);
 				System.out.println(result.getString(1));
 //				System.out.println(result.getString(2));
@@ -98,5 +97,27 @@ public class UserDao {
 			}
 		}
 		return results;
+	}
+
+	public boolean verifyEmployee(String user, String pass) {
+		Connection conn = getConnection();
+		try {
+			PreparedStatement stmt = conn.prepareStatement("Select * from users where userName = ? AND password = ?;");
+
+			stmt.setString(1, user);
+			stmt.setString(2, pass);
+			ResultSet results = stmt.executeQuery();
+
+			if (results.getString("userName").equals(user) && (results.getString("password").equals(pass))) {
+				System.out.println("logged in");
+				return true;
+			}
+			System.out.println("Credentials do not match");
+
+		} catch (SQLException e) {
+
+		}
+		return false;
+
 	}
 }

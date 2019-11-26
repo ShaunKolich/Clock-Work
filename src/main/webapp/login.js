@@ -2,10 +2,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-function Submit() {
+var user = '';
+var pass = '';
 
-    var user = document.getElementById("user").value;
-    var pass = document.getElementById("password").value;
+document.getElementById('login').addEventListener('click', function (e) {
+    e.preventDefault();
+    user = document.getElementById("user").value;
+    pass = document.getElementById("password").value;
+    // console.log(user);
+    // console.log(pass);
 
 
-}
+    let employee = {
+        userName: user,
+        password: password
+    }
+
+    console.log(user);
+    console.log(pass);
+
+    axios.post("http://localhost:8080/clockwork/api/employee", employee)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(message => {
+            
+            console.log({ message });
+        });
+
+
+
+});
+
+

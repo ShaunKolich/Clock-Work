@@ -36,7 +36,7 @@ public class FrontController extends HttpServlet {
 			break;
 		case "/clockwork/api/employee":
 			if (req.getMethod().equals("POST")) {
-				employeeController.getUserName(req, resp);
+//				employeeController.getUserName(req, resp);
 				return;
 			}
 		default:	

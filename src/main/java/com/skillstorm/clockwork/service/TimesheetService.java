@@ -1,8 +1,9 @@
-package com.skillstorm.clockwork.data;
+package com.skillstorm.clockwork.service;
 
 import java.util.Set;
 
 import com.skillstorm.clockwork.beans.TimeSheet;
+import com.skillstorm.clockwork.data.TimeSheetDao;
 
 public class TimesheetService {
 
