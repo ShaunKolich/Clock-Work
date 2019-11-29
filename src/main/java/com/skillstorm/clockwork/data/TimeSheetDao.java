@@ -37,7 +37,7 @@ public class TimeSheetDao {
 			ResultSet result = stmt.executeQuery();
 
 			while (result.next()) {
-				TimeSheet employee = new TimeSheet(result.getInt(1), result.getInt(2), result.getDouble(3));
+				TimeSheet employee = new TimeSheet(result.getInt(1), result.getDate(2));
 				TimeSheet Employee = new TimeSheet(result.getDouble(4), result.getDouble(5), result.getDouble(6),
 						result.getDouble(7), result.getDouble(8));
 				results.add(employee);
@@ -80,6 +80,27 @@ public class TimeSheetDao {
 		}
 
 	}
+	
+	public TimeSheet getTimeSheetById(int index) {
+
+		Connection conn = getConnection();
+
+		try {
+			PreparedStatement stm = conn.prepareStatement("Select * from timesheet where timesheetId = ? ;");
+			stm.setInt(1, index);
+			ResultSet results = stm.executeQuery(); 
+			results.next();
+			TimeSheet timesheet = new TimeSheet(results);
+
+			return timesheet;
+
+		} catch (SQLException e) {
+
+			System.out.println(e);
+			return new TimeSheet();
+		}
+
+	}
 
 	public void delete(int User_Id) {
 		Connection conn = getConnection();
@@ -114,7 +135,7 @@ public class TimeSheetDao {
 			PreparedStatement stmt = conn.prepareStatement(
 					"insert into hours (User_Id, End_Date, Mon_Hours, Tues_Hours, Weds_Hours, Thurs_Hours, Fri_Hours,Total_Hours) values (?)",
 					new String[] { "User_Id" });
-			stmt.setInt(2, timesheet.getEnd_Date());
+			stmt.setDate(2, timesheet.getEnd_Date());
 			stmt.setDouble(3, timesheet.getMon_Hours());
 			stmt.setDouble(4, timesheet.getTues_Hours());
 			stmt.setDouble(5, timesheet.getWeds_Hours());
@@ -144,5 +165,7 @@ public class TimeSheetDao {
 		}
 		return timesheet;
 	}
+	
+	
 
 }

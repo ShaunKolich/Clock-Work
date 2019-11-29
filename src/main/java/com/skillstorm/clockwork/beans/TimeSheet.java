@@ -1,8 +1,12 @@
 package com.skillstorm.clockwork.beans;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class TimeSheet {
 	private int user_Id;
-	private int end_Date;
+	private Date end_Date;
 	private double mon_Hours;
 	private double tues_Hours;
 	private double weds_Hours;
@@ -14,12 +18,26 @@ public class TimeSheet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+public TimeSheet(ResultSet results) throws SQLException {
+		
+//		timeSheetId = r.getInt("timeSheetId");
+		user_Id = results.getInt(2);
+//		status_Id = results.getInt(3);
+		mon_Hours = results.getFloat(4);
+		tues_Hours = results.getFloat(5);
+		weds_Hours = results.getFloat(6);
+		thurs_Hours = results.getFloat(7);
+		fri_Hours = results.getFloat(8);
+		end_Date = results.getDate(11);
 
-	public TimeSheet(int user_Id, int end_Date, double total_Hours) {
+		
+	}
+	
+	public TimeSheet(int user_Id, Date end_Date) {
 		super();
 		this.user_Id = user_Id;
 		this.end_Date = end_Date;
-		this.total_Hours = total_Hours;
+	
 	}
 
 	public TimeSheet(double mon_Hours, double tues_Hours, double weds_Hours, double thurs_Hours, double fri_Hours) {
@@ -39,7 +57,7 @@ public class TimeSheet {
 		return user_Id;
 	}
 
-	public int getEnd_Date() {
+	public Date getEnd_Date() {
 		return end_Date;
 	}
 
@@ -95,8 +113,7 @@ public class TimeSheet {
 		return total_Hours;
 	}
 
-	public void setTotal_Hours(int total_Hours) {
-		this.total_Hours = total_Hours;
+	public void total_Hours() {
+		total_Hours = mon_Hours + tues_Hours + weds_Hours + thurs_Hours + fri_Hours;
 	}
-
 }
