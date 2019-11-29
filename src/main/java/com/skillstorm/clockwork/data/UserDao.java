@@ -5,29 +5,26 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.management.RuntimeErrorException;
-
 import com.skillstorm.clockwork.beans.Employee;
 
 public class UserDao {
 
 //Main testing
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args){
 
 		UserDao user = new UserDao();
 
 //		user.getUserName("skolich", "test");
 //		System.out.println(user.getUserName("skolich", "test"));
-		user.getEmployeeName("skolich");
+		user.getEmployeeName("skolich", null);
 	}
 
 	public Connection getConnection() {
+		Connection conn = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/clockwork", "root", "root");
+			String url = "jdbc:mysql://localhost:3306/clockwork";
+			conn = DriverManager.getConnection(url, "root", "root");
 			return conn;
 		} catch (SQLException | ClassNotFoundException e) {
 			throw new RuntimeException(e);
@@ -35,7 +32,7 @@ public class UserDao {
 
 	}
 
-	public Employee getUserName(String userName, String password) throws ClassNotFoundException {
+	public Employee getEmployeeName(String userName, String password){
 
 		Connection conn = getConnection();
 		userName.toLowerCase();
@@ -43,7 +40,7 @@ public class UserDao {
 		Employee employee = null;
 		try {
 			PreparedStatement stmt = conn
-					.prepareStatement("Select * from Employee where userName = ? and password = ?;");
+					.prepareStatement("Select * from Employee where User_Name = ? and Password = ?;");
 			stmt.setString(1, userName);
 			stmt.setString(2, password);
 			ResultSet results = stmt.executeQuery();
@@ -66,43 +63,10 @@ public class UserDao {
 		}
 	}
 
-	public Set<Employee> getEmployeeName(String UserName) {
-
-		Set<Employee> results = new HashSet<>();
-		Connection conn = getConnection();
-		Employee employeeName = null;
-		try {
-
-			PreparedStatement stmt = conn.prepareStatement("select * from employee where UserName LIKE ?;");
-			stmt.setString(6, UserName + "%");
-			ResultSet result = stmt.executeQuery();
-			result.next();
-
-			while (result.next()) {
-				employeeName = new Employee(result.getString("First_Name"), result.getString("Last_Name"));
-				results.add(employeeName);
-				System.out.println(result.getString(1));
-//				System.out.println(result.getString(2));
-//				System.out.println(result.getString(3));
-			}
-			conn.close();
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		return results;
-	}
-
 	public boolean verifyEmployee(String user, String pass) {
 		Connection conn = getConnection();
 		try {
-			PreparedStatement stmt = conn.prepareStatement("Select * from users where userName = ? AND password = ?;");
+			PreparedStatement stmt = conn.prepareStatement("Select * from users where User_Name = ? AND Password = ?;");
 
 			stmt.setString(1, user);
 			stmt.setString(2, pass);

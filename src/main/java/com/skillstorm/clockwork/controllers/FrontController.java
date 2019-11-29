@@ -16,6 +16,16 @@ public class FrontController extends HttpServlet {
 		String uri = req.getRequestURI();
 
 		switch (uri) {
+		case "/clockwork/api/employee":
+			if (req.getMethod().equals("POST")) {
+				employeeController.postUser(req, resp);
+				return;
+			} else if (req.getMethod().equals("GET")) {
+				employeeController.getUserName(req, resp);
+
+			}
+		
+			break;
 		case "/clockwork/api/timesheet":
 			if (req.getMethod().equals("POST")) {
 				timeSheetController.postTimeSheet(req, resp);
@@ -34,12 +44,7 @@ public class FrontController extends HttpServlet {
 			}
 
 			break;
-		case "/clockwork/api/employee":
-			if (req.getMethod().equals("POST")) {
-//				employeeController.getUserName(req, resp);
-				return;
-			}
-		default:	
+		default:
 			break;
 
 		}
