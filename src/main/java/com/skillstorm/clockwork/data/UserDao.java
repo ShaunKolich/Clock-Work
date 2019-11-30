@@ -10,7 +10,7 @@ import com.skillstorm.clockwork.beans.Employee;
 public class UserDao {
 
 //Main testing
-	public static void main(String[] args){
+	public static void main(String[] args) {
 
 		UserDao user = new UserDao();
 
@@ -32,49 +32,50 @@ public class UserDao {
 
 	}
 
-	public Employee getEmployeeName(String userName, String password){
+	public Employee getEmployeeName(String username, String pass) {
 
 		Connection conn = getConnection();
-		userName.toLowerCase();
+		username.toLowerCase();
 
-		Employee employee = null;
+//		Employee employee = null;
 		try {
 			PreparedStatement stmt = conn
 					.prepareStatement("Select * from Employee where User_Name = ? and Password = ?;");
-			stmt.setString(1, userName);
-			stmt.setString(2, password);
+			stmt.setString(1, username);
+			stmt.setString(2, pass);
 			ResultSet results = stmt.executeQuery();
 			results.next();
-//			System.out.println("Result Found");
-//			System.out.println(results.getString("UserName"));
-//			System.out.println(results.getString("password"));
-			conn.close();
+//			
+			System.out.println("Get Employee");
+//			System.out.println(userName);
+//			System.out.println(password);
+
 			return new Employee(results);
 
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
-
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			return new Employee();
 		}
+
 	}
 
-	public boolean verifyEmployee(String user, String pass) {
+	public boolean verifyEmployee(String userName, String password) {
 		Connection conn = getConnection();
 		try {
-			PreparedStatement stmt = conn.prepareStatement("Select * from users where User_Name = ? AND Password = ?;");
+			userName.toLowerCase();
+			PreparedStatement stmt = conn
+					.prepareStatement("Select * from Employee where User_Name = ? AND Password = ?;");
 
-			stmt.setString(1, user);
-			stmt.setString(2, pass);
+			stmt.setString(1, userName);
+			stmt.setString(2, password);
 			ResultSet results = stmt.executeQuery();
-			System.out.println("Employee Dao");
-			
-			if (results.getString("userName").equals(user) && (results.getString("password").equals(pass))) {
-				System.out.println("logged in");
+//		System.out.println(user +" "+ pass);
+			System.out.println("Result set for verify user " + results.getString("userName") + " "
+					+ results.getString("password"));
+			System.out.println("Results from params " + userName + " " + password);
+
+			if (results.getString("userName").equals(userName) && (results.getString("password").equals(password))) {
+//				System.out.println("logged in");
+				System.out.println("Employee Dao");
 				return true;
 			}
 			System.out.println("Credentials do not match");

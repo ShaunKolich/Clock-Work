@@ -31,15 +31,43 @@ public class EmployeeService {
 		return thisEmp;
 	}
 
-	public Employee verifyAndGetUser(String userName, String password) {
-		Employee thisEmp = new Employee();
-		if (userDao.verifyEmployee(userName, password)) {
-			thisEmp = userDao.getEmployeeName(userName, password);
-			System.out.println("Service Controller");
-		} else {
+	public Employee verifyAndGetUser(String username, String pass, HttpServletResponse resp) {
+		Employee employee = new Employee();
+		System.out.println("UserService, getuser called");
+		System.out.println("usrName : " + username + " password: " + pass);
+		
+		if (userDao.verifyEmployee(username, pass)) {
 
-//			resp.setStatus(401);
+			System.out.println("User verified in service");
+			employee = userDao.getEmployeeName(username, pass);
+
+		} else {
+			resp.setStatus(401);
 		}
+
 		return null;
+
 	}
+
+	public Employee verifyAndGetUserObj(Employee emp) {
+		Employee empl = new Employee();
+
+//		System.out.println("UserService, getuser called");
+		System.out.println("username : " + emp.getUserName() + " password: " + emp.getPassword());
+
+		if (userDao.verifyEmployee(emp.getUserName(), emp.getPassword())) {
+
+			System.out.println("employee Service");
+			empl = userDao.getEmployeeName(emp.getUserName(), emp.getPassword());
+
+		}
+
+		return empl;
+
+	}
+
+	
+
+	
+
 }

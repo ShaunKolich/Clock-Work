@@ -22,7 +22,7 @@ public class EmployeeController {
 		try {
 			if (req.getParameter("user") != null && (req.getParameter("pass") != null)) {
 				resp.getWriter().println(new ObjectMapper().writeValueAsString(
-						employeeService.getUserName(req.getParameter("userName"), req.getParameter("password"))));
+						employeeService.verifyAndGetUser(req.getParameter("userName"), req.getParameter("password"), resp)));
 				resp.setStatus(201);
 			} else {
 				System.out.println("no user info");
@@ -36,20 +36,12 @@ public class EmployeeController {
 	public void postUser(HttpServletRequest req, HttpServletResponse resp)
 			throws JsonParseException, JsonMappingException, IOException {
 		resp.setContentType("application/json");
-		try {
-			System.out.println(req.getParameter("user"));
-			System.out.println(req.getParameter("pass"));
-			if (req.getParameter("user") != null && (req.getParameter("pass") != null)) {
-				resp.getWriter().println(new ObjectMapper().writeValueAsString(
-						employeeService.verifyAndGetUser(req.getParameter("user"), req.getParameter("pass"))));
-				System.out.println("Employee Controller");
-				resp.setStatus(201);
-			} else {
-				System.out.println("no user info");
-			}
-		} catch (Exception e) {
-			resp.setStatus(401);
-		}
+		
+		resp.getWriter().println((new ObjectMapper().writeValueAsString
+		(employeeService.verifyAndGetUserObj(new ObjectMapper().readValue(req.getInputStream(), Employee.class)))));	
+		System.out.println("Employee Controller");	
+			
+		
 	}
 
 }
