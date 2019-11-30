@@ -19,6 +19,9 @@ public class FrontController extends HttpServlet {
 		case "/clockwork/api/employee":
 			if (req.getMethod().equals("POST")) {
 				employeeController.postUser(req, resp);
+				System.out.println("Front Controller");
+//				System.out.println(req);
+//				System.out.println(resp);
 				return;
 			} else if (req.getMethod().equals("GET")) {
 				employeeController.getUserName(req, resp);

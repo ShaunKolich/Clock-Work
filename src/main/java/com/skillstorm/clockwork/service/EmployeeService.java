@@ -20,24 +20,25 @@ public class EmployeeService {
 
 	}
 
-	public Employee getEmployee(Employee employee) {
+	public Employee getEmployee(String UserName, String Pass) {
 
 		Employee thisEmp = new Employee();
-		if (userDao.verifyEmployee(employee.getUserName(), employee.getPassword())) {
-			thisEmp = userDao.getEmployeeName(employee.getUserName(), employee.getPassword());
+		if (userDao.verifyEmployee(UserName, Pass)) {
+			thisEmp = userDao.getEmployeeName(UserName, Pass);
 
 		}
 
 		return thisEmp;
 	}
 
-	public Employee verifyAndGetUser(String userName, String password, HttpServletResponse resp) {
+	public Employee verifyAndGetUser(String userName, String password) {
 		Employee thisEmp = new Employee();
 		if (userDao.verifyEmployee(userName, password)) {
 			thisEmp = userDao.getEmployeeName(userName, password);
+			System.out.println("Service Controller");
 		} else {
 
-			resp.setStatus(401);
+//			resp.setStatus(401);
 		}
 		return null;
 	}

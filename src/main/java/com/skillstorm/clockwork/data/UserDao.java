@@ -71,7 +71,8 @@ public class UserDao {
 			stmt.setString(1, user);
 			stmt.setString(2, pass);
 			ResultSet results = stmt.executeQuery();
-
+			System.out.println("Employee Dao");
+			
 			if (results.getString("userName").equals(user) && (results.getString("password").equals(pass))) {
 				System.out.println("logged in");
 				return true;

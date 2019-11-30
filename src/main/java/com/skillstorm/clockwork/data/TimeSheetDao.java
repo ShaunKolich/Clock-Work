@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.skillstorm.clockwork.beans.TimeSheet;
@@ -80,15 +82,13 @@ public class TimeSheetDao {
 		}
 
 	}
-	
+
 	public TimeSheet getTimeSheetById(int index) {
-
 		Connection conn = getConnection();
-
 		try {
-			PreparedStatement stm = conn.prepareStatement("Select * from timesheet where timesheetId = ? ;");
+			PreparedStatement stm = conn.prepareStatement("Select * from hours where User_Id = ? ;");
 			stm.setInt(1, index);
-			ResultSet results = stm.executeQuery(); 
+			ResultSet results = stm.executeQuery();
 			results.next();
 			TimeSheet timesheet = new TimeSheet(results);
 
@@ -165,7 +165,45 @@ public class TimeSheetDao {
 		}
 		return timesheet;
 	}
-	
-	
+
+	public List<TimeSheet> findAllTimeSheet() {
+		List<TimeSheet> timeList = new ArrayList<>();
+		try {
+
+			Connection conn = getConnection();
+			PreparedStatement stm = conn.prepareStatement("Select * from hours;");
+			ResultSet results = stm.executeQuery();
+			results.next();
+			while (results.next()) {
+				timeList.add(new TimeSheet(results));
+			}
+
+			return timeList;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return timeList;
+
+		}
+
+	}
+	public void addNewTimeSheet(int user_Id, String parsedDate) {
+
+		Connection conn = getConnection();
+		try {
+
+			PreparedStatement stm = conn.prepareStatement("Insert into hours (User_Id, End_Date)  Values( ?, ? ) ;");
+
+			stm.setInt(1, user_Id);
+			stm.setString(2, parsedDate);
+			System.out.println("Prepared Stm to be added " + stm.toString());
+			
+			stm.executeUpdate(); 
+			
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+	}
 
 }
