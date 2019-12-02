@@ -15,10 +15,10 @@ public class UserService {
 	
 
 	
-	public boolean verifyUser(String usrName, String password) {
+	public boolean verifyUser(String userName, String password) {
 		
 		System.out.println("UserService: verifyUser: ");
-		if(userDao.verifyUser(usrName, password)) {
+		if(userDao.verifyUser(userName, password)) {
 			return true;
 		}
 		
@@ -32,11 +32,11 @@ public class UserService {
 		User user = new User();
 		
 		System.out.println("UserService, getuser called");
-		System.out.println("usrName : " + employee.getUserName() + " password: " + employee.getPassword());
+		System.out.println("userName : " + employee.getUserName() + " password: " + employee.getPassword());
 		
 		if (userDao.verifyUser(employee.getUserName(), employee.getPassword() ) ){
 			
-			System.out.println("User verified in services");
+			System.out.println("User verified");
 			user = userDao.getUser(employee.getUserName() ,employee.getPassword());
 			
 			

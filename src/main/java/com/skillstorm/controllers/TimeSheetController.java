@@ -56,7 +56,7 @@ public class TimeSheetController {
 				resp.setStatus(201);
 			}
 
-		} else { // return error
+		} else { 
 			resp.setStatus(402);
 
 		}

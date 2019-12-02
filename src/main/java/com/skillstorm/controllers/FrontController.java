@@ -37,13 +37,13 @@ public class FrontController extends HttpServlet {
 
         timeSheetController.getTimesheets(req, resp);
       }
-      // URI for adding a new timesheet
+     
       else if (req.getMethod().equals("POST")) {
         System.out.println("timesheets/ POST method in front controller called: ");
         timeSheetController.postTimeSheets(req, resp);
 
       }
-      // URI Controller for updating DB
+     
       else if (req.getMethod().equals("PUT")) {
 
         System.out.println("timesheets/ PUT method in front controller called: ");

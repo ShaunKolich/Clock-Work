@@ -76,7 +76,7 @@ public class UserDao {
 
 			if (rs.getString("userName").equals(usrName) && rs.getString("password").equals(passWord)) {
 
-				System.out.println("Username Password Match in DB");
+				System.out.println("logged in");
 				return true;
 			}
 
