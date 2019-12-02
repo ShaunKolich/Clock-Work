@@ -26,38 +26,38 @@ public class UserService {
 		return false;
 	}
 	
-	public User verifyAndGetUserByUserObj(User u) {
+	public User verifyAndGetUserByUserObj(User employee) {
 		
 		
-		User thisUser = new User();
+		User user = new User();
 		
 		System.out.println("UserService, getuser called");
-		System.out.println("usrName : " + u.getUserName() + " password: " + u.getPassword());
+		System.out.println("usrName : " + employee.getUserName() + " password: " + employee.getPassword());
 		
-		if (userDao.verifyUser(u.getUserName(), u.getPassword() ) ){
+		if (userDao.verifyUser(employee.getUserName(), employee.getPassword() ) ){
 			
 			System.out.println("User verified in services");
-			thisUser = userDao.getUser(u.getUserName() ,u.getPassword());
+			user = userDao.getUser(employee.getUserName() ,employee.getPassword());
 			
 			
 		}
 		
 		
-		return thisUser;
+		return user;
 		
 		
 	}
 
-	public User verifyAndGetUser(String usrName, String password, HttpServletResponse resp) {
-		User thisUser = new User();
+	public User verifyAndGetUser(String userName, String password, HttpServletResponse resp) {
+		User user = new User();
 		
 		System.out.println("UserService, getuser called");
-		System.out.println("usrName : " + usrName + " password: " + password);
+		System.out.println("usrName : " + userName + " password: " + password);
 		
-		if (userDao.verifyUser(usrName, password)){
+		if (userDao.verifyUser(userName, password)){
 			
 			System.out.println("User verified in service");
-			thisUser = userDao.getUser(usrName, password);
+			user = userDao.getUser(userName, password);
 			
 		}
 		else {
