@@ -16,20 +16,18 @@ public class TimeSheetController {
 
 	TimeSheetService timeSheetService = new TimeSheetService();
 
-
 	public void getTimesheets(HttpServletRequest req, HttpServletResponse resp)
 			throws JsonProcessingException, IOException {
-	
 
 		resp.setContentType("application/json");
-//        System.out.println("test");
+		// System.out.println("test");
 		if (req.getParameter("timesheetId") != null) {
 			System.out.println("Timesheet controller: timesheetID != null");
-			resp.getWriter().println(new ObjectMapper()
-					.writeValueAsString(timeSheetService.getTimeSheetById(Integer.parseInt(req.getParameter("timesheetId")))));
+			resp.getWriter().println(new ObjectMapper().writeValueAsString(
+					timeSheetService.getTimeSheetById(Integer.parseInt(req.getParameter("timesheetId")))));
 		} else if (req.getParameter("userId") != null) {
-			resp.getWriter().println(new ObjectMapper()
-					.writeValueAsString(timeSheetService.getUserTimeSheets(Integer.parseInt(req.getParameter("userId")))));
+			resp.getWriter().println(new ObjectMapper().writeValueAsString(
+					timeSheetService.getUserTimeSheets(Integer.parseInt(req.getParameter("userId")))));
 			resp.setStatus(201);
 			System.out.println("Timesheet controller: userID != null");
 
@@ -46,21 +44,15 @@ public class TimeSheetController {
 
 		resp.setContentType("application/json");
 
-		System.out.println("Request params userid" + req.getParameter("userId") + " Date: " + req.getParameter("date"));
-
 		if (req.getParameter("userId") != null && req.getParameter("date") != null) {
-
-			System.out.println("Timesheet controller, POST timesheet, add time sheet called: ");
 
 			if (timeSheetService.dateExist(Integer.parseInt(req.getParameter("userId")), req.getParameter("date"))) {
 
-				System.out.println("date already exist.");
-				resp.setStatus(406);
-
 			} else {
-				timeSheetService.addNewTimesheet(Integer.parseInt(req.getParameter("userId")), req.getParameter("date"));
-				resp.getWriter().println(new ObjectMapper()
-						.writeValueAsString(timeSheetService.getUserTimeSheets(Integer.parseInt(req.getParameter("userId")))));
+				timeSheetService.addNewTimesheet(Integer.parseInt(req.getParameter("userId")),
+						req.getParameter("date"));
+				resp.getWriter().println(new ObjectMapper().writeValueAsString(
+						timeSheetService.getUserTimeSheets(Integer.parseInt(req.getParameter("userId")))));
 				resp.setStatus(201);
 			}
 
@@ -74,7 +66,7 @@ public class TimeSheetController {
 	public void putTimesheets(HttpServletRequest req, HttpServletResponse resp)
 			throws JsonParseException, JsonMappingException, IOException {
 		resp.setContentType("application/json");
-		System.out.println("Put called, trying to update timehseet");
+
 		timeSheetService.update(new ObjectMapper().readValue(req.getInputStream(), TimeSheet.class));
 
 	}
@@ -82,7 +74,6 @@ public class TimeSheetController {
 	public void deleteTimesheet(HttpServletRequest req, HttpServletResponse resp) {
 
 		resp.setContentType("application/json");
-		System.out.println("DeleteTimesheet called in timesheet controller, trying to delete");
 
 		timeSheetService.deleteTimeSheet(Integer.parseInt(req.getParameter("timesheetId")));
 

@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `TimesheetPortal`.`timeSheet` (
   `wed_hours` FLOAT UNSIGNED NULL DEFAULT '0',
   `thu_hours` FLOAT UNSIGNED NULL DEFAULT '0',
   `fri_hours` FLOAT UNSIGNED NULL DEFAULT '0',
-  `week_end_date` DATETIME NOT NULL,
+  `enddate` DATETIME NOT NULL,
   PRIMARY KEY (`timeSheetId`),
   UNIQUE INDEX `idtimeSheet_UNIQUE` (`timeSheetId` ASC),
   INDEX `userId_idx` (`userId` ASC),

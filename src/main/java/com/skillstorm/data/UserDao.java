@@ -34,40 +34,6 @@ public class UserDao {
 
 	}
 
-//	public static void main(String[] args) throws SQLException, ParseException {// main
-//
-//		String pattern = "YYYY/MM/DD";
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-//
-//		java.util.Date date = Calendar.getInstance().getTime();
-//		String parsedDate = simpleDateFormat.format(date);
-//
-//		String url = "jdbc:mysql://localhost:3306/clockwork";
-//		Connection conn = DriverManager.getConnection(url, "root", "root");
-//
-//		System.out.println(parsedDate);
-//		// run sql commands
-//		PreparedStatement stm = conn.prepareStatement("Select * from users;");
-//
-//		ResultSet results = stm.executeQuery(); // wll return the rowcount
-//
-//		while (results.next()) {
-//			System.out.println("results " + results.getString("userId"));
-//		}
-//
-//		UserDao u = new UserDao();
-//
-//		System.out.println("Get User Method " + u.getUserById(2));
-//		u.verifyUser("lphung1", "pickles");
-//
-//		TimeSheetDAO t = new TimeSheetDAO();
-//
-////		t.addNewTimeSheet(u.getUserById(1) ,  parsedDate ) ;
-////		
-//		System.out.println(t.findAllTimeSheet());
-//
-//	}// main
-
 	public User getUserById(int i) {
 
 		Connection conn = getConnection();

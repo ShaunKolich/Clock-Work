@@ -56,7 +56,6 @@ public class TimeSheetDAO {
 
 	}
 
-	
 	public List<TimeSheet> findAllTimeSheet() {
 
 		List<TimeSheet> timeList = new ArrayList<>();
@@ -68,7 +67,7 @@ public class TimeSheetDAO {
 			PreparedStatement stm = conn.prepareStatement("Select * from timesheet;");
 			// stm.setInt(1, i);
 			ResultSet results = stm.executeQuery(); // wll return the rowcount
-            
+
 			results.next();
 
 			while (results.next()) {
@@ -102,7 +101,7 @@ public class TimeSheetDAO {
 			Connection conn = getConnection();
 			// run sql commands
 			PreparedStatement stm = conn.prepareStatement("UPDATE timesheet SET "
-					+ "mon_hours = ?, tue_hours = ?, wed_hours = ?, thu_hours = ?, fri_hours = ?, sat_hours = ?, sun_hours = ?, statusId = ? "
+					+ "mon_hours = ?, tue_hours = ?, wed_hours = ?, thu_hours = ?, fri_hours = ?"
 					+ "WHERE timesheetID = ?; ");
 			// TODO finish the rest
 			stm.setFloat(1, t.getMonHours());
@@ -116,15 +115,13 @@ public class TimeSheetDAO {
 			System.out.println("stm query statement: " + stm.toString());
 			int rowAffected = stm.executeUpdate(); // wll return the rowcount
 
-			System.out.println("Save/Update timesheet called, rows Affected: " + rowAffected);
-
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
 
 	}
 
-		public void addNewTimeSheet(int uId, String parsedDate) {
+	public void addNewTimeSheet(int uId, String parsedDate) {
 
 		Connection conn = getConnection();
 		// run sql commands
@@ -145,12 +142,11 @@ public class TimeSheetDAO {
 
 	}
 
-	
 	public List<TimeSheet> findTimeSheetsByUser(int userId) {
 
 		Connection conn = getConnection();
 		List<TimeSheet> timeList = new ArrayList<>();
-		System.out.println("Getting the list "+ userId);
+		System.out.println("Getting the list " + userId);
 		try {
 
 			PreparedStatement stm = conn.prepareStatement("Select * from timesheets where userId = ?");
@@ -158,11 +154,11 @@ public class TimeSheetDAO {
 			// stm.setInt(1, i);
 			ResultSet result = stm.executeQuery(); // wll return the rowcount
 			result.next();
-			System.out.println("test" +userId);
+			System.out.println("test" + userId);
 			while (result.next()) {
 				timeList.add(new TimeSheet(result));
 			}
-           
+
 			return timeList;
 
 		} catch (SQLException e) {
