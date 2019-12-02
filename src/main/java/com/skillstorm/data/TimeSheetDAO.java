@@ -92,7 +92,7 @@ public class TimeSheetDAO {
 		try {
 
 			if (t.getMonHours() < 0) {
-				System.out.println("negative number");
+				
 				throw new SQLException();
 			}
 
@@ -103,7 +103,7 @@ public class TimeSheetDAO {
 			PreparedStatement stm = conn.prepareStatement("UPDATE timesheet SET "
 					+ "mon_hours = ?, tue_hours = ?, wed_hours = ?, thu_hours = ?, fri_hours = ?"
 					+ "WHERE timesheetID = ?; ");
-			// TODO finish the rest
+			
 			stm.setFloat(1, t.getMonHours());
 			stm.setFloat(2, t.getTueHours());
 			stm.setFloat(3, t.getWedHours());
@@ -121,7 +121,7 @@ public class TimeSheetDAO {
 
 	}
 
-	public void addNewTimeSheet(int uId, String parsedDate) {
+	public void addNewTimeSheet(int userId, String parsedDate) {
 
 		Connection conn = getConnection();
 		// run sql commands
@@ -130,11 +130,11 @@ public class TimeSheetDAO {
 
 			PreparedStatement stm = conn.prepareStatement("Insert into timesheet (userId, endDate)  Values( ?, ? ) ;");
 
-			stm.setInt(1, uId);
+			stm.setInt(1, userId);
 			stm.setString(2, parsedDate);
 			System.out.println("Prepared Stm to be added " + stm.toString());
 
-			stm.executeUpdate(); // wll return the rowcount
+			stm.executeUpdate(); 
 
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -149,7 +149,7 @@ public class TimeSheetDAO {
 		System.out.println("Getting the list " + userId);
 		try {
 
-			PreparedStatement stm = conn.prepareStatement("Select * from timesheets where userId = ?");
+			PreparedStatement stm = conn.prepareStatement("Select * from timesheet where userId = ?");
 			stm.setInt(1, userId);
 			// stm.setInt(1, i);
 			ResultSet result = stm.executeQuery(); // wll return the rowcount
@@ -175,7 +175,7 @@ public class TimeSheetDAO {
 		try {
 			System.out.println("Delete called in Dao: ");
 
-			PreparedStatement stm = conn.prepareStatement("Delete from timesheets where timeSheetId = ? ;");
+			PreparedStatement stm = conn.prepareStatement("Delete from timesheet where timeSheetId = ? ;");
 			stm.setInt(1, i);
 			// stm.setInt(1, i);
 			int results = stm.executeUpdate(); // wll return the rowcount
@@ -183,13 +183,13 @@ public class TimeSheetDAO {
 			System.out.println("Rows affected " + results);
 
 		} catch (SQLException e) {
-			System.out.println("FindTimeSheetByUser DAO: " + e);
+			
 
 		}
 
 	}
 
-	public boolean dateExist(int uId, String parsedDate) {
+	public boolean dateExist(int userId, String parsedDate) {
 
 		Connection conn = getConnection();
 		// run sql commands
@@ -197,9 +197,9 @@ public class TimeSheetDAO {
 		try {
 
 			PreparedStatement stm = conn
-					.prepareStatement("Select endDate from timesheets where userId = ? AND endDate = ? ;");
+					.prepareStatement("Select endDate from timesheet where userId = ? AND endDate = ? ;");
 
-			stm.setInt(1, uId);
+			stm.setInt(1, userId);
 			stm.setString(2, parsedDate);
 			System.out.println("Prepared Stm to be added " + stm.toString());
 
