@@ -1,9 +1,9 @@
-document.getElementById("timesheetButton").style.visibility = "hidden";
-document.getElementById("addTimeSheetId").style.visibility = "hidden";
-document.getElementById("timeSheetDivId").style.visibility = "hidden";
 document.getElementById("loginButton").addEventListener("click", function(e) {
+  document.getElementById("timesheetButton").style.visibility = "hidden";
+  document.getElementById("addTimeSheetId").style.visibility = "hidden";
+  document.getElementById("timeSheetDivId").style.visibility = "hidden";
   e.preventDefault();
-  e.stopPropagation();
+
   user = {
     userName: document.getElementById("userName").value,
     password: document.getElementById("password").value,
@@ -19,8 +19,6 @@ document.getElementById("loginButton").addEventListener("click", function(e) {
   promise.then(function(response) {
     //200s
     console.log(response.data);
-    console.log("then called");
-    console.log("then called and response.username not null");
 
     employee = response.data;
     console.log(employee.userId);
@@ -43,12 +41,12 @@ document.getElementById("loginButton").addEventListener("click", function(e) {
 
     getPromise.catch(function(response) {
       console.log(response);
+      console.log("user name not found");
     });
   });
 
   promise.catch(function(response) {
     console.log(response);
-    alert("login not found in database");
   });
 
   //////////////////////////////////
@@ -210,10 +208,6 @@ document.getElementById("loginButton").addEventListener("click", function(e) {
   document
     .getElementById("timeSheetTable")
     .addEventListener("click", function(e) {
-      console.log("timesheet table element clicked: target" + e.target);
-      console.log("value: " + e.target.value);
-      console.log("ID: " + e.target.id + " Inner Text: " + e.target.innerText);
-
       //if submit butten pressed
       if (e.target.innerText == "Delete") {
         console.log("Delete clicked" + "e.target.value");
@@ -237,9 +231,7 @@ document.getElementById("loginButton").addEventListener("click", function(e) {
       }
     });
 
-  //document.getelementbyId("name" +editButton.Value ).getattribute(value)
 
-  //fills the table with timesheets
   function TimeSheet(list) {
     for (let timeSheet of list) {
       appendTimesheet(timeSheet);

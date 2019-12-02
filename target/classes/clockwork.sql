@@ -61,9 +61,7 @@ CREATE TABLE IF NOT EXISTS `TimesheetPortal`.`timeSheet` (
   `wed_hours` FLOAT UNSIGNED NULL DEFAULT '0',
   `thu_hours` FLOAT UNSIGNED NULL DEFAULT '0',
   `fri_hours` FLOAT UNSIGNED NULL DEFAULT '0',
-  `sat_hours` FLOAT UNSIGNED NULL DEFAULT '0',
-  `sun_hours` FLOAT UNSIGNED NULL DEFAULT '0',
-  `week_end_date` DATETIME NOT NULL,
+  `enddate` DATETIME NOT NULL,
   PRIMARY KEY (`timeSheetId`),
   UNIQUE INDEX `idtimeSheet_UNIQUE` (`timeSheetId` ASC),
   INDEX `userId_idx` (`userId` ASC),
@@ -194,12 +192,6 @@ CREATE TABLE IF NOT EXISTS `Clockwork`.`users` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4;
-
-Insert into roles (roleId, roleName)
-values (1, 'Associate'), (2, 'Manager'), (3, 'System Admin');
-
-Insert into status (statusId, statusName)
-values (1, 'Work in Progress'), ( 2, 'Submitted' );
 
 insert into users (userId, firstName, lastName, userName, password, jobTitle, roleId)
 values (1, 'Shaun','Kolich', 'skolich', 'test', 'employee', 1),
