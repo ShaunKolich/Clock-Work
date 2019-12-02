@@ -1,0 +1,10 @@
+com\skillstorm\javabeans\User.class
+com\skillstorm\controllers\UserController.class
+com\skillstorm\data\UserDao.class
+com\skillstorm\controllers\FrontController.class
+com\skillstorm\service\TimeSheetService.class
+com\skillstorm\data\TimeSheetDAO.class
+com\skillstorm\service\UserService.class
+com\skillstorm\controllers\CORSFilter.class
+com\skillstorm\controllers\TimeSheetController.class
+com\skillstorm\javabeans\TimeSheet.class

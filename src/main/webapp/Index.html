@@ -4,41 +4,84 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
-<!--<![endif]-->
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel = "stylesheet" href = "/src/main/webapp/main.css"/> -->
+  </head>
+  <body>
+    <section id="loginForm">
+      <form>
+        <div class="form-group">
+          <label for="userName">User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            style="max-width: 30%"
+            name="userName"
+            id="userName"
+          />
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              style="max-width: 30%"
+              name="password"
+              id="password"
+            />
+            <button type="submit" class="btn btn-primary" id="loginButton">
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="">
-</head>
+    <div id="timeSheetDivId">
+      <table id="timeSheetTable">
+        <h5 id="formHeader"></h5>
+        <thead id="timeSheetTableHead" class="thead-dark">
+          <tr>
+            <th id="mon" style="width: 200px; height:50px;"></th>
+            <th id="tues" style="width: 200px; height:50px; "></th>
+            <th id="wed" style="width: 200px; height:50px; "></th>
+            <th id="thurs" style="width: 200px;  "></th>
+            <th id="fri" style="width: 200px;  "></th>
+            <th id="total" style="width: 200px; height:50px; "></th>
+            <th id="ending" style="width: 200px; height:50px; "></th>
+          </tr>
+          <tr id ="tableLayout">
 
-<script src="login.js" async defer></script>
-<script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
+          </tr>
+        </thead>
 
-<header>
-	<meta charset="ISO-8859-1">
-	<title>Clockwork Login</title>
-</header>
-
-<body>
-	<form id ="login">
-		<div class="login_box">
-			<label>Username</label> <input type="text" name="userName" id= "user" placeholder="User Name" />
-			<label>Password</label> <input type="text" name="password" placeholder="Password" id="password" />
-			<Button type="submit">Submit</Button>
-		</div>
-	</form>
-	<script>
-
-	</script>
-</body>
-
-
-</html>
+        <tbody id="timeSheetTableBody">
 
 
 
+        </tbody>
+      </table>
+      <button id="timesheetButton" type="button" class="btn btn-primary btn-sm">
+        Timsheets
+      </button>
+      <button id="addTimeSheetId" type="button" class="btn btn-primary btn-sm">
+        Add Timesheet
+      </button>
+    </div>
+
+    <script src="login.js" async defer></script>
+
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
+  </body>
 </html>
